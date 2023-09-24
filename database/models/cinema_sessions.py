@@ -17,3 +17,7 @@ class CinemaSessions(Base):
 
     tickets = relationship('Tickets',
                            secondary=cinema_sessions_tickets, back_populates='cinema_sessions')
+
+    movie = relationship("Movie", back_populates="session_for_movie")
+
+    hall = relationship("CinemaHall", back_populates="sessions_in_hall")

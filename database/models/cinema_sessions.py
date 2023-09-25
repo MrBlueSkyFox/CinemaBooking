@@ -3,7 +3,6 @@ from uuid import uuid4
 from sqlalchemy import Column, UUID, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
-from .cinema_sessions_tickets import cinema_sessions_tickets
 from .shared_res import Base
 
 
@@ -15,8 +14,10 @@ class CinemaSessions(Base):
 
     session_start = Column('time', DateTime, nullable=False)
 
-    tickets = relationship('Tickets',
-                           secondary=cinema_sessions_tickets, back_populates='cinema_sessions')
+    # tickets = relationship('Tickets',
+    #                        secondary=cinema_sessions_tickets, back_populates='cinema_sessions')
+    tickets = relationship('Ticket',
+                           back_populates='cinema_session')
 
     movie = relationship("Movie", back_populates="session_for_movie")
 

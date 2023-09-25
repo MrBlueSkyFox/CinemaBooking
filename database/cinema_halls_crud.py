@@ -7,7 +7,7 @@ from .db_base import DataBaseBase
 from .models import CinemaHall
 
 
-class CinemaHallsCrud(DataBaseBase):
+class CinemaHallsCRUD(DataBaseBase):
     def get_all_cinema_halls(self) -> list[CinemaHall]:
         stmt = select(CinemaHall)
         cinema_halls = self._select_objects(stmt)

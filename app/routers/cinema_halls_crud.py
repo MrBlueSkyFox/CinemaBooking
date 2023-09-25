@@ -37,3 +37,9 @@ def update_cinema_hall(cinema_hall_id: UUID,
                        cinema_hall_update: schemas.CinemaHallUpdate, db: DataBase = Depends(get_db)):
     db.update_cinema_hall_by_id(cinema_hall_id, cinema_hall_update)
     return {"status_code": HTTP_200_OK}
+
+
+@router.delete("/{cinema_hall_id}")
+def delete_movie(cinema_hall_id: UUID, db: DataBase = Depends(get_db)):
+    db.delete_cinema_hall_by_id(cinema_hall_id)
+    return {"status_code": HTTP_200_OK}

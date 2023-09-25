@@ -34,5 +34,6 @@ class CinemaHallsCRUD(DataBaseBase):
         self.commit_changes()
 
     def delete_cinema_hall_by_id(self, cinema_hall_id: UUID):
-        stmt = delete(CinemaHall).where(CinemaHall.id == cinema_hall_id)
-        self._execute(stmt)
+        cinema_hall = self.get_cinema_hall_by_id(cinema_hall_id)
+        self.session.delete(cinema_hall)
+        self.commit_changes()

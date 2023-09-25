@@ -27,11 +27,6 @@ class DataBaseBase:
     def create_all(self):
         Base.metadata.create_all(self.engine)
 
-    def get_all_cinema_halls(self) -> list[CinemaHall]:
-        stmt = select(CinemaHall)
-        movies = self._select_objects(stmt)
-        return movies
-
     def get_unavailable_seats_movie_session(self, movie_session_id: UUID) -> list:
         stmt = select(
             CinemaSessions.id.label('cinema_session_id'),

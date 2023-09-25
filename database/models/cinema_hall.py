@@ -13,4 +13,4 @@ class CinemaHall(Base):
     rows = Column('row_total', SmallInteger, nullable=False)
     places_per_row = Column('places_per_row', SmallInteger, nullable=False)
 
-    sessions_in_hall = relationship("CinemaSessions",back_populates="hall")
+    sessions_in_hall = relationship("CinemaSessions", back_populates="hall", cascade="all,delete")

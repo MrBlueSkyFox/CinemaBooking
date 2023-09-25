@@ -12,4 +12,4 @@ class Movie(Base):
     name = Column('name', String, nullable=False)
     picture = Column('picture', LargeBinary, nullable=False)
 
-    session_for_movie = relationship("CinemaSessions", back_populates="movie")
+    session_for_movie = relationship("CinemaSessions", back_populates="movie", cascade="all,delete")

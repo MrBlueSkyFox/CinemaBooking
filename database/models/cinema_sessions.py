@@ -14,10 +14,8 @@ class CinemaSessions(Base):
 
     session_start = Column('time', DateTime, nullable=False)
 
-    # tickets = relationship('Tickets',
-    #                        secondary=cinema_sessions_tickets, back_populates='cinema_sessions')
     tickets = relationship('Ticket',
-                           back_populates='cinema_session')
+                           back_populates='cinema_session', cascade="all,delete")
 
     movie = relationship("Movie", back_populates="session_for_movie")
 

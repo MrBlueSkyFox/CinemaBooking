@@ -25,11 +25,11 @@ class CinemaHallsCRUD(DataBaseBase):
 
     def update_cinema_hall_by_id(self, cinema_hall_id: UUID, cinema_hall_data: schemas.CinemaHallUpdate):
         cinema_hall = self.get_cinema_hall_by_id(cinema_hall_id)
-        if cinema_hall.name:
+        if cinema_hall_data.name:
             cinema_hall.name = cinema_hall_data.name
-        if cinema_hall.rows:
+        if cinema_hall_data.rows:
             cinema_hall.rows = cinema_hall_data.rows
-        if cinema_hall.places_per_row:
+        if cinema_hall_data.places_per_row:
             cinema_hall.places_per_row = cinema_hall_data.places_per_row
         self.commit_changes()
 

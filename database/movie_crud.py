@@ -32,5 +32,6 @@ class MovieCRUD(DataBaseBase):
         self.commit_changes()
 
     def delete_movie_by_id(self, movie_id: UUID) -> None:
-        stmt = delete(Movie).where(Movie.id == movie_id)
-        self._execute(stmt)
+        movie = self.get_movie_by_id(movie_id)
+        self.session.delete(movie)
+        self.commit_changes()

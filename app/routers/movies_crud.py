@@ -36,3 +36,9 @@ def create_movie(movie_create: schemas.MovieCreate, db: DataBase = Depends(get_d
 def update_movie(movie_id: UUID, movie_update: schemas.MovieUpdate, db: DataBase = Depends(get_db)):
     db.update_move_by_id(movie_id, movie_update)
     return {"status_code": HTTP_200_OK}
+
+
+@router.delete("/{movie_id}")
+def delete_movie(movie_id: UUID, db: DataBase = Depends(get_db)):
+    db.delete_movie_by_id(movie_id)
+    return {"status_code": HTTP_200_OK}

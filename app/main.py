@@ -8,13 +8,15 @@ from database import DataBase
 import database.schemas as schemas
 from mock import FillMock
 
-from .routers import movies_crud
+from .routers import movies_crud, cinema_halls_crud
+
 from .dependencies import get_db
 from .data_to_orm import create_ticket
 
 app = FastAPI()
 
 app.include_router(movies_crud.router)
+app.include_router(cinema_halls_crud.router)
 
 
 @app.get("/generate_mock")
@@ -27,7 +29,6 @@ def generate_mock_and_create_db(db: DataBase = Depends(get_db)):
 
 @app.get("/all_rooms", response_model=list[schemas.CinemaHall])
 def get_all_cinema_halls(db: DataBase = Depends(get_db)):
-    # 1
     cinema_halls = db.get_all_cinema_halls()
     return cinema_halls
 
@@ -41,7 +42,6 @@ def get_movies_session_in_room(room_name: str, db: DataBase = Depends(get_db)):
 
 @app.get("/seats_in_session/{cinema_session_id}", response_model=schemas.CinemaHallSessionSeats)
 def get_seats_movie_session(cinema_session_id: UUID, db: DataBase = Depends(get_db)):
-    # 3
     unavailable_seats = db.get_unavailable_seats_movie_session(cinema_session_id)
     cinema_hall = db.get_cinema_hall_by_movie_session(cinema_session_id)
     rows, cols = cinema_hall.rows, cinema_hall.places_per_row
